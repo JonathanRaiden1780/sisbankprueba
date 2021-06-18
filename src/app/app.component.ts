@@ -30,8 +30,8 @@ export class AppComponent {
   log() {
     const url = require('url');
     window.open(url.format({
-      pathname: 'localhost:4200/login',
-      protocol: 'http:',
+      pathname: 'sisbank.web.app/login',
+      protocol: 'https:',
       slashes: true
     }),
       "login",
