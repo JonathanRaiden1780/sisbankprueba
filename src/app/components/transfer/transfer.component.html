@@ -1,63 +1,62 @@
 <div class="card col-md-fill mt-3 ml-2 text-white text-center form-inline" style="background-color: #c09d8b"><i
-    class="fa fa-user" class="fa-2x"></i><strong>
-    <h2>Movimientos</h2>
-  </strong></div>
+        class="fa fa-user" class="fa-2x"></i><strong>
+        <h2>Movimientos</h2>
+    </strong></div>
 <div class="card-group">
-  <div class="card col-md-2 mt-3  text-white text-center form-inline" style="background-color: #c09d8b">
-    <h5>Número de Cuenta: {{id}} </h5>
-    <h5>Fecha de Apertura: {{date}}</h5>
-    <h5>Balance: {{balance}}</h5>
-    <h5>Tipo de Cuenta: {{type}}</h5>
-  </div>
-  <div class="card col-md-fill mt-3 ml-2  text-center form-inline border-color: white"  >
-  <form class="form" #formGuardar="ngForm" (ngSubmit)="onSubmit(formGuardar)">
-    <div class="card-group mt-3">
-      <div class="card col-md-16" style="border-color: white;">
-        <div class="card-header">
-          <h5><strong>Deposito</strong></h5>
-        </div>
-        <div class="form-row ">
-            <label >Monto</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="fa fa-usd"></i></div>
-              </div>
-              <input style="border-top: white; border-right: white;" type="number" class="form-control" name="mountD"
-                [(ngModel)]="mountD" required>
-            </div>
-          <div class="col mx-auto">
-            <button type="submit" class=" btn-block mb-2" style="font-size: 1rem; color: #c09d8b"
-              value="Guardar"><strong>Guardar</strong></button>
-          </div>
-        </div>
-      </div>
-     
+    <div class="card col-md-2 mt-3  text-white text-center form-inline" style="background-color: #c09d8b">
+        <h5>Número de Cuenta: {{id}} </h5>
+        <h5>Fecha de Apertura: {{date}}</h5>
+        <h5>Balance: {{balance}}</h5>
+        <h5>Tipo de Cuenta: {{type}}</h5>
     </div>
-  </form>
-</div>
-<div class="card col-md-fill mt-3 ml-2  text-center form-inline" >
-    <form class="form" #formGuardarR="ngForm" (ngSubmit)="onSubmitRet(formGuardarR)">
-      <div class="card-group mt-3">
-        <div class="card col-md-16" style="border-color: white;">
-          <div class="card-header">
-            <h5><strong>Retirar</strong></h5>
-          </div>
-          <div class="form-row ">
-              <label >Monto</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"> <i class="fa fa-usd"></i></div>
+    <div class="card col-md-fill mt-3 ml-2  text-center form-inline border-color: white">
+        <form class="form" #formGuardar="ngForm" (ngSubmit)="onSubmit(formGuardar)">
+            <div class="card-group mt-3">
+                <div class="card col-md-16" style="border-color: white;">
+                    <div class="card-header">
+                        <h5><strong>Deposito</strong></h5>
+                    </div>
+                    <div class="form-row ">
+                        <label>Monto</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"> <i class="fa fa-usd"></i></div>
+                            </div>
+                            <input style="border-top: white; border-right: white;" type="number" min="0.01" step="0.01 class="form-control"
+                                name="mountD" [(ngModel)]="mountD" required>
+                        </div>
+                        <div class="col mx-auto">
+                            <button type="submit" class=" btn-block" style=" color: #c09d8b"
+                                value="Guardar"><strong>Guardar</strong></button>
+                        </div>
+                    </div>
                 </div>
-                <input style="border-top: white; border-right: white;" type="number" class="form-control" name="mountR"
-                  [(ngModel)]="mountR" required>
-              </div>
-            <div class="col mx-auto">
-              <button type="submit"  class=" btn-block mb-2" style="font-size: 1rem; color: #c09d8b"
-                value="Guardar"><strong>Guardar</strong></button>
             </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
+    <div class="card col-md-fill mt-3 ml-2  text-center form-inline">
+        <form class="form" #formGuardarR="ngForm" (ngSubmit)="onSubmitRet(formGuardarR)">
+            <div class="card-group mt-3">
+                <div class="card col-md-16" style="border-color: white;">
+                    <div class="card-header">
+                        <h5><strong>Retirar</strong></h5>
+                    </div>
+                    <div class="form-row ">
+                        <label>Monto</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"> <i class="fa fa-usd"></i></div>
+                            </div>
+                            <input style="border-top: white; border-right: white;" type="number" min="0.01" step="0.01 class="form-control"
+                                name="mountR" [(ngModel)]="mountR" required>
+                        </div>
+                        <div class="col mx-auto">
+                            <button type="submit" class=" btn-block" style=" color: #c09d8b"
+                                value="Guardar"><strong>Guardar</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

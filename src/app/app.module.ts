@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgxDatatableModule} from '@swimlane/ngx-datatable'
+import { NgxDatatableModule } from '@swimlane/ngx-datatable'
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-
 
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './components/login/login.component';
@@ -46,7 +45,7 @@ import { TransferComponent } from './components/transfer/transfer.component';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [ ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

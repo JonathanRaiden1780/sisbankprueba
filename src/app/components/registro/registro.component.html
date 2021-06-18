@@ -1,53 +1,65 @@
-
-<div class="card text-center" >
+<div class="card text-center">
   <h2 style="color: #1B1BB7;">Registro</h2>
- <div class="card text-center" >
-     <form #formguardar="ngForm" (ngSubmit)="addNewUser();saveRegister(formguardar)">
-         <div class="card-header form-group">
-          <label for="names"><strong>Nombre(s):</strong></label>
-          <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-user"></i></span>
+  <div class="card text-center">
+    <form #formguardar="ngForm" (ngSubmit)="addNewUser();saveRegister(formguardar)">
+      <div class="card-header form-group">
+        <label for="names"><strong>Nombre(s):</strong></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: #f16821; color: white"><i
+                class="fa fa-user"></i></span>
+          </div>
+          <input type="text" name="names" [(ngModel)]="names" [ngModelOptions]="{standalone:true}" class="form-control"
+            placeholder="  Juan Alberto">
         </div>
-        <input type="text" name="names" [(ngModel)]="names" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="  Juan Alberto">
-      </div>
-      <label for="lastnames"><strong>Apellidos:</strong></label>
-          <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-user"></i></span>
+        <label for="lastnames"><strong>Apellidos:</strong></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: #f16821; color: white"><i
+                class="fa fa-user"></i></span>
+          </div>
+          <input type="text" name="lastname" [(ngModel)]="lastname" [ngModelOptions]="{standalone:true}"
+            class="form-control" placeholder="  Perez Sanchez">
         </div>
-        <input type="text" name="lastname" [(ngModel)]="lastname" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="  Perez Sanchez">
+        <label for="email"><strong>Correo Electronico:</strong></label>
+        <div class="input-group mb-3 text-center">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: #f16821; color: white"><i
+                class="fa fa-envelope"></i></span>
+          </div>
+          <input type="email" name="email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" class="form-control"
+            placeholder="user@mail.com">
+        </div>
+        <label for="pass"><strong>Contraseña:</strong></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: #f16821; color: white"><i
+                class="fa fa-key"></i></span>
+          </div>
+          <input type="password" name="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}"
+            class="form-control">
+        </div>
+        <label for="pass"><strong>CURP:</strong></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: #f16821; color: white"><i
+                class="fa fa-address-card"></i></span>
+          </div>
+          <input type="pass" name="curp" [(ngModel)]="curp" [ngModelOptions]="{standalone:true}" class="form-control">
+        </div>
+        <label for="pass"><strong>Direccion:</strong></label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: #f16821; color: white"><i
+                class="fa fa-map-marker"></i></span>
+          </div>
+          <input type="pass" name="address" [(ngModel)]="address" [ngModelOptions]="{standalone:true}"
+            class="form-control">
+        </div>
       </div>
-       <label for="email"><strong>Correo Electronico:</strong></label>
-       <div class="input-group mb-3 text-center">
-         <div class="input-group-prepend">
-           <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-envelope"></i></span>
-         </div>
-         <input type="email" name="email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="user@mail.com">
-       </div>
-       <label for="pass"><strong>Contraseña:</strong></label>
-       <div class="input-group mb-3">
-         <div class="input-group-prepend">
-           <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-key"></i></span>
-         </div>
-         <input type ="password" name="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" class="form-control">
-       </div>
-       <label for="pass" ><strong>CURP:</strong></label>
-       <div class="input-group mb-3" >
-         <div class="input-group-prepend">
-           <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-address-card"></i></span>
-         </div>
-         <input type ="pass" name="curp" [(ngModel)]="curp" [ngModelOptions]="{standalone:true}" class="form-control">
-       </div>
-       <label for="pass"><strong>Direccion:</strong></label>
-       <div class="input-group mb-3">
-         <div class="input-group-prepend">
-           <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-map-marker"></i></span>
-         </div>
-         <input type ="pass" name="address" [(ngModel)]="address" [ngModelOptions]="{standalone:true}" class="form-control">
-       </div>
-     </div>
-     <button type="submit" class="btn btn-warning text-center btn-block"><h6> Ingresar</h6></button>
-   </form>
- </div>
-</div> 
+      <button type="submit" class="btn btn-warning text-center btn-block">
+        <h6> Ingresar</h6>
+      </button>
+    </form>
+  </div>
+</div>

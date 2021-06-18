@@ -36,7 +36,7 @@
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="fa fa-usd"></i></div>
               </div>
-              <input style="border-top: white; border-right: white;" type="number" class="form-control" name="mountA"
+              <input style="border-top: white; border-right: white;" type="number" min="0.01" step="0.01" class="form-control" name="mountA"
                 [(ngModel)]="mountA" required>
             </div>
             <label f>Saldo Promedio</label>
@@ -44,7 +44,7 @@
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="fa fa-usd"></i></div>
               </div>
-              <input style="border-top: white; border-right: white;" type="number" class="form-control" name="mountM"
+              <input style="border-top: white; border-right: white;" type="number" min="0.01" step="0.01" class="form-control" name="mountM"
                 [(ngModel)]="mountM" required>
             </div>
           </div>
@@ -54,7 +54,7 @@
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="fa fa-usd"></i></div>
               </div>
-              <input style="border-top: white; border-right: white;" type="number" class="form-control" name="mountL"
+              <input style="border-top: white; border-right: white;" type="number" min="0.01" step="0.01" class="form-control" name="mountL"
                 [(ngModel)]="mountL" required>
             </div>
             <br><br>
@@ -63,10 +63,11 @@
           </div>
         </div>
       </div>
-     
+
     </div>
   </form>
 </div>
 <div style="border-color: white;" class="card col-md-fill">
-  <ng2-smart-table (custom)="transfer()" (deleteConfirm)="deleteData($event)" [settings]="settings" [source]="source"></ng2-smart-table>
+  <ng2-smart-table (custom)="transfer($event)" (deleteConfirm)="deleteData($event)" [settings]="settings"
+    [source]="source"></ng2-smart-table>
 </div>

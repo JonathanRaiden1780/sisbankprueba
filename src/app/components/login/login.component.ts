@@ -1,11 +1,7 @@
 
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-
 import { Router } from '@angular/router';
-
-import { UserInterface } from 'src/interfaces/user';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
@@ -14,18 +10,17 @@ import { AngularFirestore } from 'angularfire2/firestore';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
-  email= '';
-  password= '';
+
+  email = '';
+  password = '';
   public isLoginClient = false;
-  public isLogin = false; 
+  public isLogin = false;
   constructor(
     public authService: AuthService,
     public router: Router,
     public afs: AngularFirestore,
   ) { };
-
-  onSubmitLogin(){
+  onSubmitLogin() {
     this.authService.login(this.email, this.password).then(
       (resolve) => {
         this.onLoginRedirect(this.email)
@@ -36,12 +31,12 @@ export class LoginComponent {
         console.log(err)
       })
   };
-  onLoginRedirect(id:string){
+  onLoginRedirect(id: string) {
     this.authService.getAuth().subscribe(user => {
-      if(user){
+      if (user) {
         this.isLogin = true;
       }
-    }) 
+    })
     window.close()
-  }; 
+  };
 }

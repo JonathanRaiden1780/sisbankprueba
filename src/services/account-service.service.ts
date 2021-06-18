@@ -24,24 +24,33 @@ export class AccountServiceService {
   }
   //Actualizar Cuentas
   deleteAccount(registerData: AccountInterface) {
-    this.accountDoc = this.afs.doc('Clients/' + registerData.client+ '/Accounts/'+registerData.id);
+    this.accountDoc = this.afs.doc('Clients/' + registerData.client + '/Accounts/' + registerData.id);
     this.accountDoc.delete();
   }
   //Actualizar Cuentas
   updateAccount(registerData: AccountInterface) {
-    this.accountDoc = this.afs.doc('Clients/' + registerData.id);
-    this.accountDoc.update(registerData);
+    this.accountDoc = this.afs.doc('Clients/' + registerData.client + '/Accounts/' + registerData.id);
+    this.accountDoc.update(registerData).then(res => {
+     res = alert('Cuenta Actualizada')}).catch(err=>{
+       err = console.log(err);
+     });
   }
-  getAll(id:string): Observable<AccountInterface[]> {
+  //Todas las cuentas
+  getAll(id: string): Observable<AccountInterface[]> {
     this.accountClientCollection = this.afs.collection('Clients').doc(id).collection('Accounts', ref => ref);
 
     this.accountObs = this.accountClientCollection.snapshotChanges()
-    .pipe(map(changes => {
-      return changes.map(action => {
-        const data = action.payload.doc.data() as AccountInterface;
-        return data;
-      });
-    }));
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as AccountInterface;
+          return data;
+        });
+      }));
     return this.accountObs;
+  }
+  //Tomar una cuenta especifica
+  getDataAccount(client: string, id: string) {
+    this.accountClientCollection = this.afs.collection('Clients').doc(client).collection('Accounts', ref => ref);
+    return this.accountClientCollection.doc(id).valueChanges();
   }
 }

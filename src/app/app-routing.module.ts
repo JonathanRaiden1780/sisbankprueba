@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegistroComponent },
   { path: 'home', component: LandingComponent },
   { path: 'accounts', component: AccountComponent },
-  { path: 'transfer', component: TransferComponent }
+  { path: 'transfer/:id', component: TransferComponent }
 ];
 
 @NgModule({

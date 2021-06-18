@@ -6,5 +6,7 @@ export interface AccountInterface {
     mountL: number,
     client: string,
     balance?: number,
-    date: string
+    date: string,
+    dateMov?: string,
+    send?: string
 }
