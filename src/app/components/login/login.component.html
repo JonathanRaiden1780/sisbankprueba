@@ -1,0 +1,26 @@
+  
+<div class="card text-center" >
+      <h2 style="color: #1B1BB7;">Login</h2>
+     <div class="card text-center" >
+       <form (submit)="onSubmitLogin()">
+       <div class="card-header form-group">
+           <label for="email"><strong>Correo Electronico:</strong></label>
+           <div class="input-group mb-3 text-center">
+             <div class="input-group-prepend">
+               <span class="input-group-text" style="background-color: #f16821; color: white"><<i class="fa fa-envelope"></i></span>
+             </div>
+             <input type="email" name="email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="user@email.com">
+           </div>
+           <label for="password"><strong>Contraseña:</strong></label>
+           <div class="input-group mb-3">
+             <div class="input-group-prepend">
+               <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-key"></i></span>
+             </div>
+             <input type ="password" name="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" class="form-control">
+           </div>
+         </div>
+         <button type="submit" class="btn btn-warning text-center btn-block"><h6> Ingresar</h6></button>
+       </form>
+     </div>
+   </div>
+   

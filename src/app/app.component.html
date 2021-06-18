@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <img width="200" src="https://i.ibb.co/Yc6vJSx/pixlr-bg-result.png" alt="sisbank">
+  </ul>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" *ngIf="employee">
+      <a class="nav-link" routerLinkActive="active-link" routerLink="/register">
+        Registro
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="employee">
+      <a class="nav-link" routerLinkActive="active-link" routerLink="/accounts">
+        Cuentas
+      </a>
+    </li>
+  </ul> 
+  <ul class="navbar-nav"> 
+    <li class="navbar-nav nav-item"  *ngIf="isLogin" >
+      <a class="nav-link" routerLinkActive="active-link" routerLink="/register">
+        <p>
+          Registrate
+        </p>
+      </a>
+  </li>
+    <li class="navbar-nav nav-item"  *ngIf="isLogin" >
+        <a class="nav-link"  (click)="log()">
+          <p>
+            Inicia sesion
+            <i style="color: black;" class="fa fa-key"></i>
+          </p>
+        </a>
+    </li>
+    <li class="navbar-nav nav-item"  *ngIf="Logout" >
+      
+        <a class="nav-link"  (click)="logout()" href="#">
+            <i style="color: black;" class="fa fa-sign-out"></i>
+        </a>
+    </li>
+</ul>
+</nav>
+<router-outlet></router-outlet>
