@@ -4,18 +4,6 @@
  <div class="card text-center" >
      <form #formguardar="ngForm" (ngSubmit)="addNewUser();saveRegister(formguardar)">
          <div class="card-header form-group">
-          <p><strong>Tipo de Usuario</strong></p>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" style="background-color: #f16821; color: white"><i class="fa fa-users"></i></span>
-            </div>
-            <select class="form-control" name="type" [(ngModel)]="type  ">
-              <option>Selecciona...</option>
-                <option value="true">Empleado</option>
-                <option value="false">Cliente</option>
-            </select>
-          </div>
-
           <label for="names"><strong>Nombre(s):</strong></label>
           <div class="input-group mb-3">
         <div class="input-group-prepend">

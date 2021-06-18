@@ -21,6 +21,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingComponent } from './components/landing/landing.component';
 import { AccountComponent } from './components/account/account.component';
+import { TransferComponent } from './components/transfer/transfer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AccountComponent } from './components/account/account.component';
     LoginComponent,
     RegistroComponent,
     LandingComponent,
-    AccountComponent
+    AccountComponent,
+    TransferComponent
   ],
   imports: [
     BrowserModule,

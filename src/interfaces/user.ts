@@ -3,9 +3,8 @@ export interface UserInterface {
     names: string,
     lastname: string;
     email: string,
-    employee: string,
-    curp?: string,
+    curp: string,
     accounts?: string[],
-    address?: string,
-    ident?: string
+    address: string,
+    ident: string
 }

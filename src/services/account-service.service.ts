@@ -1,35 +1,47 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { AccountComponent } from 'src/app/components/account/account.component';
+import { map } from 'rxjs/operators';
 import { AccountInterface } from 'src/interfaces/account';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountServiceService {
-  registerCollection: AngularFirestoreCollection<AccountInterface>;
+  accountClientCollection: AngularFirestoreCollection<AccountInterface>;
+  accountCollection: AngularFirestoreCollection<AccountInterface>;
   user: Observable<firebase.User>;
-  registerClientCollection: AngularFirestoreCollection<AccountInterface>;
-  registerDoc: AngularFirestoreDocument<AccountInterface>;
-  register: Observable<AccountInterface[]>;
+  accountDoc: AngularFirestoreDocument<AccountInterface>;
+  accountObs: Observable<AccountInterface[]>;
   constructor(
     private afs: AngularFirestore
 
   ) {
-    this.registerCollection = this.afs.collection('Register', ref => ref); 
-   }
-  addUser(registerData: AccountInterface){
-    this.registerCollection.doc(registerData.id).set(registerData);
+    this.accountCollection = this.afs.collection('Clients', ref => ref);
   }
-  deleteUser(registerData: AccountInterface){
-    this.registerDoc = this.afs.doc('Clients/' + registerData.id);
-    this.registerDoc.delete();
+  addAccount(accountData: AccountInterface) {
+    this.accountCollection.doc(accountData.client).collection('Accounts').doc(accountData.id).set(accountData);
+  }
+  //Actualizar Cuentas
+  deleteAccount(registerData: AccountInterface) {
+    this.accountDoc = this.afs.doc('Clients/' + registerData.client+ '/Accounts/'+registerData.id);
+    this.accountDoc.delete();
+  }
+  //Actualizar Cuentas
+  updateAccount(registerData: AccountInterface) {
+    this.accountDoc = this.afs.doc('Clients/' + registerData.id);
+    this.accountDoc.update(registerData);
+  }
+  getAll(id:string): Observable<AccountInterface[]> {
+    this.accountClientCollection = this.afs.collection('Clients').doc(id).collection('Accounts', ref => ref);
 
-  }
-  //Actualizar Usuario
-  updateUser(registerData: AccountInterface){
-    this.registerDoc = this.afs.doc('Clients/' + registerData.id);
-    this.registerDoc.update(registerData);
+    this.accountObs = this.accountClientCollection.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as AccountInterface;
+        return data;
+      });
+    }));
+    return this.accountObs;
   }
 }

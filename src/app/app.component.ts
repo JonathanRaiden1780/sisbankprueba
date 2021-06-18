@@ -10,7 +10,6 @@ export class AppComponent {
   title = 'sisbank';
   public isLogin = false;
   public Logout = false;
-  public employee = 'false';
 
   constructor(
     public authService: AuthService) {
@@ -21,11 +20,6 @@ ngOnInit() {
     if (user) {
       this.isLogin = false;
       this.Logout = true;
-      this.authService.getUserData(user.email).subscribe( (info: UserInterface) => {
-          if(info.employee == 'true'){
-            this.employee = 'true';
-          }
-        }); 
     } else {
       this.isLogin = true;
       this.Logout = false;

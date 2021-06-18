@@ -40,12 +40,6 @@ export class LoginComponent {
     this.authService.getAuth().subscribe(user => {
       if(user){
         this.isLogin = true;
-        this.authService.getUserData(id).subscribe( (info: UserInterface ) =>
-        {
-          if(info.employee){
-            this.isLoginClient = false;
-          }
-        })
       }
     }) 
     window.close()

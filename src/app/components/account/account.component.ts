@@ -16,6 +16,7 @@ import { AuthService } from 'src/services/auth.service';
 export class AccountComponent implements OnInit {
   accountInterface:AccountInterface;
   source: LocalDataSource;
+
   constructor(
     private afs: AngularFirestore,
     private authService : AuthService, 
@@ -29,28 +30,52 @@ export class AccountComponent implements OnInit {
     var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
     var año = new Date().getFullYear();
     this.date = dia[day-1]+' '+ nday + ' de ' + mes[month]+ ' de '+ año; 
-    console.log(day)
   }
   settings = {
-    columns:{},
+    columns:{
+      accounts:{
+        title:'Tipo de Cuenta',
+        type:'string'
+      },
+      balance:{
+        title:'Saldo Actual',
+        valuePrepareFunction: (value) => { return value === 'Total'? value : Intl.NumberFormat('en-US',{style:'currency', currency: 'MXN'}).format(value)}
+      },
+      mountL:{
+        title:'Limite de Cuenta',
+        valuePrepareFunction: (value) => { return value === 'Total'? value : Intl.NumberFormat('en-US',{style:'currency', currency: 'MXN'}).format(value)}
+      },
+      mountM:{
+        title:'Saldo Promedio ',
+        valuePrepareFunction: (value) => { return value === 'Total'? value : Intl.NumberFormat('en-US',{style:'currency', currency: 'MXN'}).format(value)}
+      },
+      date:{
+        title:'Fecha de Apertura',
+        type:'number'
+      }
+    },
     hideSubHeader: true,
     actions: {
       columnTitle: '',
       add: false,
-      edit: true,
+      edit: false,
       delete: true,
-      custom: [],
+      custom: [
+        {
+          name: 'transfer',
+          title: 'Movimientos <i class="fa fa-share-square-o" title="entrada"></i>'
+        }
+      ],
       position: 'right', // left|right
-    },
-    edit:{
-      editButtonContent: '<i class="fa fa-pen" title="Edit"></i>'
     },
     delete:{
       confirmDelete:true,
-      deleteButtonContent: '<i class="fa fa-trash" title="delete"></i>'
+      deleteButtonContent: ' Eliminar <i class="fa fa-trash" title="delete"></i>'
     },
     mode: 'inline'
   }
+  tableset:any = {...this.settings}
+
   id: string;
   ident: string;
   user:string;
@@ -65,32 +90,51 @@ export class AccountComponent implements OnInit {
   date: string;
 
   ngOnInit(): void {
+    this.authService.getAuth().subscribe( user => {
+      if(user){
+        this.authService.getUserData(user.email).subscribe((info:UserInterface) =>{
+          this.ident = info.ident;
+          this.name = info.names+' '+info.lastname;
+          this.curp = info.curp;
+          this.email = info.email;
+          this.address = info.address;
+          this.accountService.getAll(info.ident).subscribe(x=> this.source = x as any
+          ) 
+    
+        })
+      }
+    });
   }
-  searchClient(id:string){
-    this.afs.collection('Clients').doc(id).valueChanges().pipe((take(1))).subscribe(querys => {
-      this.detalles(querys as any)
-    })
-   }
-   detalles(data: UserInterface){
-       this.ident = data.ident;
-       this.name = data.names;
-       this.curp = data.curp;
-       this.email = data.email
-       this.address = data.address
-   }
+  
   onSubmit({value}: {value : AccountInterface }){
-   value.id = this.id+this.accounts;
+   value.id = this.ident+this.accounts;
    value.balance = this.mountA;
    value.mountA = this.mountA;
    value.mountL = this.mountL;
    value.mountM = this.mountM;
-   value.client = this.id;
+   value.client = this.ident;
    value.date = this.date;
    value.type = this.accounts;
    console.log(value)
-   this.accountService.addUser(value)
+   this.accountService.addAccount(value)
    /* this.hservice.addcita(value);
    this.router.navigate(['/home']) */
  }
+ deleteData(event){
+  if(event.data.balance == 0){
+    if(confirm('¿Estas seguro de eliminar la cuenta?')){
+      this.accountService.deleteAccount(event.data)
+      event.confirm.resolve();
+    }
+  }
+  else{
+    alert('La cuenta necesita estar en 0.00')
+    event.confirm.reject();
+  }
+  
+}
+transfer(){
+  this.router.navigate(['/transfer'])
+}
 
 }

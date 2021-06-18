@@ -41,9 +41,7 @@ export class AuthService {
    //Registra usuario en Firestore
    addUser(registerData: UserInterface){
      this.registerCollection.doc(registerData.id).set(registerData);
-     if(registerData.employee == 'false' ){
       this.registerClientCollection.doc(registerData.ident).set(registerData);
-     }
    }
    //Elimina Usuario de Firetore
    deleteUser(registerData: UserInterface){
@@ -75,8 +73,5 @@ export class AuthService {
   //Validar información de usuario
   getUserData(id: string){
     return this.registerCollection.doc(id).valueChanges();
-  }
-  getUserIdent(id:string){
-    return this.registerClientCollection.doc(id).valueChanges();
   }
 }

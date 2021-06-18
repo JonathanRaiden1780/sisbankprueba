@@ -16,12 +16,10 @@ export class RegistroComponent implements OnInit {
     private authservice: AuthService,
   ) { }
   password= '';
-  type='';
   id= '';
   names= '';
   lastname= '';
   email= '';
-  employee= false;
   curp= '';
   accounts?: string[]
   address?: string
@@ -45,7 +43,6 @@ export class RegistroComponent implements OnInit {
     value.address = this.address;
     value.curp = this.curp;
     value.lastname = this.lastname;
-    value.employee = this.type
     value.names = this.names;
     let result = '';
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
